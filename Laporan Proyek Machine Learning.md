@@ -7,7 +7,7 @@ Klasifikasi Kategori Produk E-Commerce Berbasis Analisis Clickstream Menggunakan
 **NIM:** 234311045  
 **Program Studi:** Teknologi Rekayasa Perangkat Lunak
 **Mata Kuliah:** Data Science
-**Dosen Pengampu:** Gus Nanang Syaifuddin s.kom.,M.Kom
+**Dosen Pengampu:** Gus Nanang Syaifuddin S.kom.,M.Kom
 **Tahun Akademik:** 2025/5
 **Link GitHub Repository:** https://github.com/Isan955/DS-UAS2025.git
 **Link Video Pembahasan:** [URL Repository]
@@ -181,7 +181,7 @@ Strategi pembagian data dilakukan untuk menyiapkan training set untuk pelatihan 
 
 **Penjelasan Strategi** :Pembagian data menggunakan rasio 80:20, di mana 80% data dialokasikan untuk melatih model dan 20% data sisanya dicadangkan sebagai test set. Proses pembagian ini menggunakan metode Stratified Split. Penggunaan stratification memastikan bahwa distribusi kelas target (page 1) pada Train Set dan Test Set tetap proporsional dan seimbang. Hal ini penting mengingat ini adalah masalah klasifikasi multi-kelas, sehingga hasil evaluasi akhir akan lebih representatif dan akurat.
 
-### 5.5 Data Balancing (jika diperlukan)
+### 5.5 Data Balancing
 
 **Teknik yang digunakan:**
 
@@ -294,9 +294,7 @@ y_pred_advanced = model_advanced.predict(X_test_scaled)
 
 **Nama Model:** Multilayer Perceptron (MLP)
 
-** (Centang) Jenis Deep Learning: **
-
-- [✓] Multilayer Perceptron (MLP) - untuk tabular
+- [x] Multilayer Perceptron (MLP) - untuk tabular
 - [ ] Convolutional Neural Network (CNN) - untuk image
 - [ ] Recurrent Neural Network (LSTM/GRU) - untuk sequential/text
 - [ ] Transfer Learning - untuk image
@@ -384,11 +382,11 @@ CPU / GPU, platform: Google Colab
 
 1. **Training & Validation Loss** per epoch
 
-![Loss](images\DeepLearningLoss.png)
+![Loss](images/DeepLearningLoss.png)
 
 2. **Training & Validation Accuracy/Metric** per epoch
 
-![Acc](images\DeepLearningAccuracy.png)
+![Acc](images/DeepLearningAccuracy.png)
 
 **Analisis Training:**
 
@@ -449,46 +447,42 @@ Model: "sequential"
 **Metrik:**
 
 ```
-[Tuliskan hasil metrik, contoh:]
-- Accuracy: 0.75
-- Precision: 0.73
-- Recall: 0.76
-- F1-Score: 0.74
+- Accuracy: 0.6621
+- Weighted Precision: 0.67
+- Weighted Recall: 0.66
+- Weighted F1-Score: 0.6586
 ```
 
 **Confusion Matrix / Visualization:**  
-[Insert gambar jika ada]
+![LogReg](images/LogReg.png)
 
 #### 7.2.2 Model 2 (Advanced/ML)
 
 **Metrik:**
 
 ```
-- Accuracy: 0.85
-- Precision: 0.84
-- Recall: 0.86
-- F1-Score: 0.85
+- Accuracy: 0.9875
+- Weighted Precision: 0.99
+- Weighted Recall: 0.99
+- Weighted F1-Score: 0.9875
 ```
 
 **Confusion Matrix / Visualization:**  
-[Insert gambar jika ada]
-
-**Feature Importance (jika applicable):**  
-[Insert plot feature importance untuk tree-based models]
+![RF](images/Random_Forest.png)
 
 #### 7.2.3 Model 3 (Deep Learning)
 
 **Metrik:**
 
 ```
-- Accuracy: 0.89
-- Precision: 0.88
-- Recall: 0.90
-- F1-Score: 0.89
+- Accuracy: 0.9867
+- Weighted Precision: 0.99
+- Weighted Recall: 0.99
+- Weighted F1-Score: 0.9868
 ```
 
 **Confusion Matrix / Visualization:**  
-[Insert gambar jika ada]
+![DL](images/Deep_Learning.png)
 
 **Training History:**  
 [Sudah diinsert di Section 6.3.6]
@@ -502,31 +496,43 @@ Model: "sequential"
 
 | Model                   | Accuracy | Precision | Recall | F1-Score | Training Time | Inference Time |
 | ----------------------- | -------- | --------- | ------ | -------- | ------------- | -------------- |
-| Baseline (Model 1)      | 0.75     | 0.73      | 0.76   | 0.74     | 2s            | 0.01s          |
-| Advanced (Model 2)      | 0.85     | 0.84      | 0.86   | 0.85     | 30s           | 0.05s          |
-| Deep Learning (Model 3) | 0.89     | 0.88      | 0.90   | 0.89     | 15min         | 0.1s           |
+| Baseline (Model 1)      | 0.6621     | 0.67      | 0.66   | 0.6586     | 2s            | 0.01s          |
+| Advanced (Model 2)      | 0.9875     | 0.99      | 0.99   | 0.9875    | 30s           | 0.05s          |
+| Deep Learning (Model 3) | 0.9867    | 0.99      | 0.99   | 0.9868     | 1 min         | 0.1s           |
 
-**Visualisasi Perbandingan:**  
-[Insert bar chart atau plot perbandingan metrik]
 
 ### 7.4 Analisis Hasil
 
 **Interpretasi:**
 
 1. **Model Terbaik:**  
-   [Sebutkan model mana yang terbaik dan mengapa]
+   Model Random Forest (RF) adalah model terbaik dengan Akurasi tertinggi, yaitu 0.9875 dan F1-Score 0.9875. Meskipun MLP (0.9867) hanya tertinggal tipis, RF menunjukkan kemampuan terbaik dalam menangani non-linearitas data clickstream dengan kompleksitas pelatihan yang lebih rendah dibandingkan Deep Learning.
 
 2. **Perbandingan dengan Baseline:**  
-   [Jelaskan peningkatan performa dari baseline ke model lainnya]
+   - Peningkatan performa dari model baseline ke model lanjutan sangat signifikan.
+
+   - Peningkatan Akurasi dari Logistic Regression (0.6621) ke Random Forest (0.9875) mencapai 32.54%.
+
+Peningkatan ini membuktikan hipotesis awal bahwa hubungan antara fitur clickstream dan kategori produk sangat non-linear dan tidak dapat dimodelkan secara efektif oleh model linear.
 
 3. **Trade-off:**  
-   [Jelaskan trade-off antara performa vs kompleksitas vs waktu training]
+   - **Pemenang Kinerja**: Random Forest (0.9875) sedikit lebih unggul dari MLP (0.9867).
+
+   - **Trade-off Waktu Pelatihan**: Logistic Regression memiliki waktu pelatihan tercepat (hampir instan). Namun, untuk mencapai performa superior, diperlukan kompleksitas yang lebih tinggi. Random Forest memberikan Akurasi tinggi dengan waktu pelatihan yang jauh lebih cepat daripada MLP, yang umumnya membutuhkan waktu lebih lama (Epochs) untuk mencapai konvergensi.
+
+   - **rade-off Pilihan Akhir**: Karena Random Forest menawarkan performa tertinggi dan kompleksitas implementasi yang lebih rendah (tidak memerlukan arsitektur jaringan, fungsi loss khusus, atau callbacks seperti MLP), RF menjadi pilihan yang paling efisien dan optimal untuk penerapan di lingkungan produksi
 
 4. **Error Analysis:**  
-   [Jelaskan jenis kesalahan yang sering terjadi, kasus yang sulit diprediksi]
+   - **Model Baseline**: Kegagalan terbesar terjadi pada prediksi kategori Skirts (Recall hanya 0.50), menunjukkan model linear mengalami kesulitan besar dalam membedakan pola klik untuk Skirts dari kategori lain.
+
+   - **Model Lanjutan**: Baik Random Forest maupun MLP mencapai Recall dan Precision hampir sempurna (0.98–1.00) di semua kategori. Hal ini menunjukkan model-model non-linear ini hampir tidak membuat kesalahan yang signifikan, yang mungkin disebabkan oleh pola clickstream yang sangat distinct untuk setiap kategori setelah penghapusan data leakage.
 
 5. **Overfitting/Underfitting:**  
-   [Analisis apakah model mengalami overfitting atau underfitting]
+   - **Logistic Regression**: Mengalami Underfitting. Performa rendah (66.21%) menunjukkan model terlalu sederhana untuk menangkap kompleksitas data.
+
+   - **Random Forest**: Menghasilkan performa tinggi dan seimbang. Diasumsikan Overfitting minimal (atau diatasi dengan baik oleh ensemble), karena performa pada test set sangat tinggi (98.75%).
+
+   - **Deep Learning (MLP)**: Mengalami Overfitting ringan pada proses pelatihan. Meskipun demikian, performa pada test set tetap sangat tinggi (98.67%), menunjukkan bahwa Dropout dan Early Stopping efektif memitigasi risiko overfitting yang parah.
 
 ---
 
@@ -534,27 +540,27 @@ Model: "sequential"
 
 ### 8.1 Kesimpulan Utama
 
-**Model Terbaik:**  
-[Sebutkan model terbaik berdasarkan evaluasi]
+**Model Terbaik:**  Model Random Forest Classifier adalah model klasifikasi terbaik untuk data clickstream ini.
 
-**Alasan:**  
-[Jelaskan mengapa model tersebut lebih unggul]
+**Alasan:**  Random Forest mencapai Akurasi tertinggi (0.9875) dan F1-Score yang identik (0.9875) pada test set. Meskipun model Deep Learning (MLP) juga memberikan performa sangat tinggi (0.9867), Random Forest memberikan hasil yang sedikit lebih unggul dan efisien dalam hal komputasi dan interpretasi dibandingkan arsitektur MLP yang lebih kompleks. Kinerja superior ini membuktikan keunggulan model ensemble dalam menangkap hubungan non-linear antar fitur perilaku pengguna.
 
-**Pencapaian Goals:**  
-[Apakah goals di Section 3.2 tercapai? Jelaskan]
+**Pencapaian Goals:**  Goals utama proyek, yaitu membandingkan model linear (baseline) dengan model non-linear (advanced dan Deep Learning) untuk klasifikasi kategori produk, telah tercapai dengan sangat sukses. Model non-linear berhasil meningkatkan akurasi dari 66% (Baseline) menjadi 99% (Random Forest dan MLP), memberikan solusi klasifikasi yang sangat andal.
 
 ### 8.2 Key Insights
 
 **Insight dari Data:**
 
-- [Insight 1]
-- [Insight 2]
-- [Insight 3]
+- **Non-Linearitas Dominan**: Hubungan antara fitur clickstream (harga, urutan klik, warna) dan kategori produk bersifat sangat non-linear. Hal ini dibuktikan oleh kegagalan model linear (Logistic Regression) yang hanya mencapai Akurasi 66.21%.
+
+- **Data Seimbang**: Dataset memiliki distribusi kelas target yang relatif seimbang, yang dikonfirmasi oleh kesamaan nilai Akurasi dan F1-Score pada model yang berkinerja baik (RF dan MLP).
+
+- **Keberadaan Data Leakage**: Deteksi dan penghapusan fitur page 2 (clothing model) sangat krusial. Fitur ini wajib dibuang untuk memastikan model belajar dari pola perilaku (clickstream) yang sesungguhnya dan bukan hanya menghafal ID produk.
 
 **Insight dari Modeling:**
 
-- [Insight 1]
-- [Insight 2]
+- **Superioritas Model Non-Linear**: Model yang mampu menangani non-linearitas (Random Forest dan MLP) sangat efektif, mencapai Akurasi $\approx 99\%$.
+- **Pilihan Efisiensi**: Random Forest terbukti sebagai solusi paling optimal, memberikan performa puncak dengan kompleksitas dan waktu pelatihan yang lebih rendah dibandingkan model Deep Learning yang juga mencapai performa serupa.
+- **Pentingnya Scaling**: Proses StandardScaling pada input sangat penting untuk kinerja optimal model berbasis gradien seperti Logistic Regression dan Deep Learning (MLP).
 
 ### 8.3 Kontribusi Proyek
 
@@ -574,28 +580,28 @@ Saran pengembangan untuk proyek selanjutnya:
 **Data:**
 
 - [ ] Mengumpulkan lebih banyak data
-- [ ] Menambah variasi data
-- [ ] Feature engineering lebih lanjut
+- [x] Menambah variasi data
+- [x] Feature engineering lebih lanjut
 
 **Model:**
 
-- [ ] Mencoba arsitektur DL yang lebih kompleks
-- [ ] Hyperparameter tuning lebih ekstensif
-- [ ] Ensemble methods (combining models)
+- [x] Mencoba arsitektur DL yang lebih kompleks
+- [x] Hyperparameter tuning lebih ekstensif
+- [x] Ensemble methods (combining models)
 - [ ] Transfer learning dengan model yang lebih besar
 
 **Deployment:**
 
-- [ ] Membuat API (Flask/FastAPI)
-- [ ] Membuat web application (Streamlit/Gradio)
+- [x] Membuat API (Flask/FastAPI)
+- [x] Membuat web application (Streamlit/Gradio)
 - [ ] Containerization dengan Docker
-- [ ] Deploy ke cloud (Heroku, GCP, AWS)
+- [x] Deploy ke cloud (Heroku, GCP, AWS)
 
 **Optimization:**
 
 - [ ] Model compression (pruning, quantization)
-- [ ] Improving inference speed
-- [ ] Reducing model size
+- [x] Improving inference speed
+- [x] Reducing model size
 
 ---
 
@@ -603,7 +609,7 @@ Saran pengembangan untuk proyek selanjutnya:
 
 ### 10.1 GitHub Repository
 
-**Link Repository:** [URL GitHub Anda]
+**Link Repository:** https://github.com/Isan955/DS-UAS2025
 
 **Repository harus berisi:**
 
@@ -616,26 +622,25 @@ Saran pengembangan untuk proyek selanjutnya:
 
 ### 10.2 Environment & Dependencies
 
-**Python Version:** [3.8 / 3.9 / 3.10 / 3.11]
+**Python Version:** 3.10
 
 **Main Libraries & Versions:**
 
 ```
+# Core Data Handling and Numerical Operations
 numpy==1.24.3
 pandas==2.0.3
+
+# Machine Learning Frameworks
 scikit-learn==1.3.0
+
+# Visualization
 matplotlib==3.7.2
 seaborn==0.12.2
 
-# Deep Learning Framework (pilih salah satu)
-tensorflow==2.14.0  # atau
-torch==2.1.0        # PyTorch
+tensorflow==2.14.0 
 
-# Additional libraries (sesuaikan)
-xgboost==1.7.6
-lightgbm==4.0.0
-opencv-python==4.8.0  # untuk computer vision
-nltk==3.8.1           # untuk NLP
-transformers==4.30.0  # untuk BERT, dll
+# Tambahan 
+keras==2.14.0
 
 ```
