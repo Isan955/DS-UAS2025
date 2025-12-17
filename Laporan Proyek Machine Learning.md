@@ -496,10 +496,9 @@ Model: "sequential"
 
 | Model                   | Accuracy | Precision | Recall | F1-Score | Training Time | Inference Time |
 | ----------------------- | -------- | --------- | ------ | -------- | ------------- | -------------- |
-| Baseline (Model 1)      | 0.6621     | 0.67      | 0.66   | 0.6586     | 2s            | 0.01s          |
-| Advanced (Model 2)      | 0.9875     | 0.99      | 0.99   | 0.9875    | 30s           | 0.05s          |
-| Deep Learning (Model 3) | 0.9867    | 0.99      | 0.99   | 0.9868     | 1 min         | 0.1s           |
-
+| Baseline (Model 1)      | 0.6621   | 0.67      | 0.66   | 0.6586   | 2s            | 0.01s          |
+| Advanced (Model 2)      | 0.9875   | 0.99      | 0.99   | 0.9875   | 30s           | 0.05s          |
+| Deep Learning (Model 3) | 0.9867   | 0.99      | 0.99   | 0.9868   | 1 min         | 0.1s           |
 
 ### 7.4 Analisis Hasil
 
@@ -508,26 +507,30 @@ Model: "sequential"
 1. **Model Terbaik:**  
    Model Random Forest (RF) adalah model terbaik dengan Akurasi tertinggi, yaitu 0.9875 dan F1-Score 0.9875. Meskipun MLP (0.9867) hanya tertinggal tipis, RF menunjukkan kemampuan terbaik dalam menangani non-linearitas data clickstream dengan kompleksitas pelatihan yang lebih rendah dibandingkan Deep Learning.
 
-2. **Perbandingan dengan Baseline:**  
+2. **Perbandingan dengan Baseline:**
+
    - Peningkatan performa dari model baseline ke model lanjutan sangat signifikan.
 
    - Peningkatan Akurasi dari Logistic Regression (0.6621) ke Random Forest (0.9875) mencapai 32.54%.
 
 Peningkatan ini membuktikan hipotesis awal bahwa hubungan antara fitur clickstream dan kategori produk sangat non-linear dan tidak dapat dimodelkan secara efektif oleh model linear.
 
-3. **Trade-off:**  
+3. **Trade-off:**
+
    - **Pemenang Kinerja**: Random Forest (0.9875) sedikit lebih unggul dari MLP (0.9867).
 
    - **Trade-off Waktu Pelatihan**: Logistic Regression memiliki waktu pelatihan tercepat (hampir instan). Namun, untuk mencapai performa superior, diperlukan kompleksitas yang lebih tinggi. Random Forest memberikan Akurasi tinggi dengan waktu pelatihan yang jauh lebih cepat daripada MLP, yang umumnya membutuhkan waktu lebih lama (Epochs) untuk mencapai konvergensi.
 
    - **rade-off Pilihan Akhir**: Karena Random Forest menawarkan performa tertinggi dan kompleksitas implementasi yang lebih rendah (tidak memerlukan arsitektur jaringan, fungsi loss khusus, atau callbacks seperti MLP), RF menjadi pilihan yang paling efisien dan optimal untuk penerapan di lingkungan produksi
 
-4. **Error Analysis:**  
+4. **Error Analysis:**
+
    - **Model Baseline**: Kegagalan terbesar terjadi pada prediksi kategori Skirts (Recall hanya 0.50), menunjukkan model linear mengalami kesulitan besar dalam membedakan pola klik untuk Skirts dari kategori lain.
 
    - **Model Lanjutan**: Baik Random Forest maupun MLP mencapai Recall dan Precision hampir sempurna (0.98–1.00) di semua kategori. Hal ini menunjukkan model-model non-linear ini hampir tidak membuat kesalahan yang signifikan, yang mungkin disebabkan oleh pola clickstream yang sangat distinct untuk setiap kategori setelah penghapusan data leakage.
 
-5. **Overfitting/Underfitting:**  
+5. **Overfitting/Underfitting:**
+
    - **Logistic Regression**: Mengalami Underfitting. Performa rendah (66.21%) menunjukkan model terlalu sederhana untuk menangkap kompleksitas data.
 
    - **Random Forest**: Menghasilkan performa tinggi dan seimbang. Diasumsikan Overfitting minimal (atau diatasi dengan baik oleh ensemble), karena performa pada test set sangat tinggi (98.75%).
@@ -540,11 +543,11 @@ Peningkatan ini membuktikan hipotesis awal bahwa hubungan antara fitur clickstre
 
 ### 8.1 Kesimpulan Utama
 
-**Model Terbaik:**  Model Random Forest Classifier adalah model klasifikasi terbaik untuk data clickstream ini.
+**Model Terbaik:** Model Random Forest Classifier adalah model klasifikasi terbaik untuk data clickstream ini.
 
-**Alasan:**  Random Forest mencapai Akurasi tertinggi (0.9875) dan F1-Score yang identik (0.9875) pada test set. Meskipun model Deep Learning (MLP) juga memberikan performa sangat tinggi (0.9867), Random Forest memberikan hasil yang sedikit lebih unggul dan efisien dalam hal komputasi dan interpretasi dibandingkan arsitektur MLP yang lebih kompleks. Kinerja superior ini membuktikan keunggulan model ensemble dalam menangkap hubungan non-linear antar fitur perilaku pengguna.
+**Alasan:** Random Forest mencapai Akurasi tertinggi (0.9875) dan F1-Score yang identik (0.9875) pada test set. Meskipun model Deep Learning (MLP) juga memberikan performa sangat tinggi (0.9867), Random Forest memberikan hasil yang sedikit lebih unggul dan efisien dalam hal komputasi dan interpretasi dibandingkan arsitektur MLP yang lebih kompleks. Kinerja superior ini membuktikan keunggulan model ensemble dalam menangkap hubungan non-linear antar fitur perilaku pengguna.
 
-**Pencapaian Goals:**  Goals utama proyek, yaitu membandingkan model linear (baseline) dengan model non-linear (advanced dan Deep Learning) untuk klasifikasi kategori produk, telah tercapai dengan sangat sukses. Model non-linear berhasil meningkatkan akurasi dari 66% (Baseline) menjadi 99% (Random Forest dan MLP), memberikan solusi klasifikasi yang sangat andal.
+**Pencapaian Goals:** Goals utama proyek, yaitu membandingkan model linear (baseline) dengan model non-linear (advanced dan Deep Learning) untuk klasifikasi kategori produk, telah tercapai dengan sangat sukses. Model non-linear berhasil meningkatkan akurasi dari 66% (Baseline) menjadi 99% (Random Forest dan MLP), memberikan solusi klasifikasi yang sangat andal.
 
 ### 8.2 Key Insights
 
@@ -558,7 +561,7 @@ Peningkatan ini membuktikan hipotesis awal bahwa hubungan antara fitur clickstre
 
 **Insight dari Modeling:**
 
-- **Superioritas Model Non-Linear**: Model yang mampu menangani non-linearitas (Random Forest dan MLP) sangat efektif, mencapai Akurasi $\approx 99\%$.
+- **Superioritas Model Non-Linear**: Model yang mampu menangani non-linearitas (Random Forest dan MLP) sangat efektif, mencapai Akurasi 99%.
 - **Pilihan Efisiensi**: Random Forest terbukti sebagai solusi paling optimal, memberikan performa puncak dengan kompleksitas dan waktu pelatihan yang lebih rendah dibandingkan model Deep Learning yang juga mencapai performa serupa.
 - **Pentingnya Scaling**: Proses StandardScaling pada input sangat penting untuk kinerja optimal model berbasis gradien seperti Logistic Regression dan Deep Learning (MLP).
 
@@ -638,9 +641,9 @@ scikit-learn==1.3.0
 matplotlib==3.7.2
 seaborn==0.12.2
 
-tensorflow==2.14.0 
+tensorflow==2.14.0
 
-# Tambahan 
+# Tambahan
 keras==2.14.0
 
 ```
