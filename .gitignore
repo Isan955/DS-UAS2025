@@ -1,0 +1,16 @@
+e-shop clothing 2008.csv
+
+venv/
+env/
+.env
+
+__pycache__/
+*.pyc
+
+models/*.h5
+models/*.pkl
+
+.DS_Store
+Thumbs.db
+
+.ipynb_checkpoints/

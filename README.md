@@ -38,22 +38,36 @@
 ```
 project/
 │
-├── data/                   # Dataset (tidak di-commit, download manual)
+├── data/
+│   ├── e_sho_clothing_cleaned.csv
+│   └── e_sho_clothing.csv
 │
-├── notebooks/              # Jupyter notebooks
-│   └── ML_Project.ipynb
+├── notebooks/
+│   └── 234311045_Muhammad Hasanuddin_UAS_DS.ipynb
 │
-├── src/                    # Source code
+├── src/
 │
-├── models/                 # Saved models
-│   ├── model_baseline.pkl
-│   ├── model_rf.pkl
-│   └── model_cnn.h5
+├── models/
+│   ├── model_logistic_regression.pkl
+│   ├── model_random_forest.pkl
+│   └── model_deep_learning.h5
 │
-├── images/                 # Visualizations
-│   └── r
+├── images/
+│   ├── Deep_Learning.png
+│   ├── DeepLearningAccuracy.png
+│   ├── DeepLearningLoss.png
+│   ├── Distribusi_harga_perkategori.png
+│   ├── Heatmap_korelasi_fitur.png
+│   ├── LogReg.png
+│   ├── model_comparison_with_f1-score.png
+│   ├── Model_Comparison.png
+│   ├── Random_Forest.png
+│   └── Target.png
 │
-├── requirements.txt        # Dependencies
+├── Laporan Proyek Machine Learning.md
+├── Cheklist Submit.md
+├── License
+├── requirements.txt
 ├── .gitignore
 └── README.md
 ```
@@ -88,8 +102,8 @@ project/
   - **StandardScaler** diterapkan pada seluruh fitur input (`X`) untuk menstandarisasi data dan mengurangi dampak _outliers_ pada model linear dan DL.
   - **Label Encoding** diterapkan pada variabel target (`y`) untuk format yang dibutuhkan oleh Keras (`sparse_categorical_crossentropy`).
 - **Splitting:**
-  - Train set: 80% (samples)
-  - Test set: 20% (samples)
+  - Train set: 80% (132.379)
+  - Test set: 20% (33.095)
   - Menggunakan **Stratified Split** untuk mempertahankan distribusi kelas yang relatif seimbang.
 
 ---
@@ -110,17 +124,17 @@ project/
 
 | Model         | Score (Accuracy) | Catatan                                                    |
 | ------------- | ---------------- | ---------------------------------------------------------- |
-| Baseline      | 65.26%           | Model linear gagal menangkap pola non-linear.              |
-| Advanced      | 98.59%           | Peningkatan dramatis, membuktikan kompleksitas non-linear. |
-| Deep Learning | 98.82%           | Model terbaik, Weighted F1-Score **0.99**.                 |
+| Baseline      | 65.21%           | Model linear gagal menangkap pola non-linear.              |
+| Advanced      | 98.75%           | Peningkatan dramatis, membuktikan kompleksitas non-linear. |
+| Deep Learning | 98.67%           | Model, Weighted F1-Score **0.99**.                         |
 
 ---
 
 # 7. 🏁 Kesimpulan
 
-- Model terbaik: **Deep Learning (MLP)**.
-- Alasan: MLP memberikan performa terbaik dengan Accuracy 98.82% dan Weighted F1-Score 0.99. Model ini mencapai performa sempurna (F1 1.00) pada kategori _Blouses_ dan _Sale_. Selain itu, _Training History_ menunjukkan model stabil dan tidak _overfitting_.
-- Insight penting: Perbedaan signifikan antara performa LogReg (65.26%) dan model non-linear (RF/MLP) membuktikan bahwa data _clickstream_ memiliki hubungan **sangat non-linear** yang hanya dapat ditangkap oleh model _ensemble_ atau _neural network_.
+- Model terbaik: **Random Forest Classifier**.
+- Alasan: Random Forest mencapai Akurasi tertinggi (0.9875) dan F1-Score yang identik (0.9875) pada test set. Meskipun model Deep Learning (MLP) juga memberikan performa sangat tinggi (0.9867), Random Forest memberikan hasil yang sedikit lebih unggul dan efisien dalam hal komputasi dan interpretasi dibandingkan arsitektur MLP yang lebih kompleks. Kinerja superior ini membuktikan keunggulan model ensemble dalam menangkap hubungan non-linear antar fitur perilaku pengguna.
+- Insight penting: Perbedaan signifikan antara performa LogReg (65.21%) dan model non-linear (RF/MLP) membuktikan bahwa data _clickstream_ memiliki hubungan **sangat non-linear** yang hanya dapat ditangkap oleh model _ensemble_ atau _neural network_.
 
 ---
 
