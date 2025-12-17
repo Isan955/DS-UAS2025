@@ -91,28 +91,34 @@ Mahasiswa **WAJIB** menggunakan minimal **tiga model** dengan komposisi sebagai 
 ### 4.1 Informasi Dataset
 
 **Sumber Dataset:**  
-[Sebutkan sumber: Kaggle, UCI ML Repository, atau sumber lain dengan URL]
+https://archive.ics.uci.edu/dataset/553/clickstream+data+for+online+shopping
 
 **Deskripsi Dataset:**
 
 - Jumlah baris (rows): 165.474 samples
-- Jumlah kolom (columns/features): [angka]
+- Jumlah kolom (columns/features): 14
 - Tipe data: Tabular
-- Ukuran dataset: [MB/GB]
+- Ukuran dataset: 6,519 KB
 - Format file: CSV
 
 ### 4.2 Deskripsi Fitur
 
-Jelaskan setiap fitur/kolom yang ada dalam dataset.
-| Nama Fitur | Tipe Data | Deskripsi | Contoh Nilai |
-|------------|-----------|-----------|--------------|
-| id | Integer | ID unik data | 1, 2, 3 |
-| age | Integer | Usia (tahun) | 25, 30, 45 |
-| income | Float | Pendapatan (juta) | 5.5, 10.2 |
-| category | Categorical | Kategori produk | A, B, C |
-| text | String | Teks ulasan | "Produk bagus..." |
-| image | Image | Citra 224x224 RGB | Array 224x224x3 |
-| label | Categorical | Label target | 0, 1 atau "positif", "negatif" |
+| Nama Fitur              | Tipe Data   | Deskripsi                                            | Contoh Nilai             |
+| ----------------------- | ----------- | ---------------------------------------------------- | ------------------------ |
+| year                    | Integer     | Tahun pencatatan data                                | 2008                     |
+| month                   | Integer     | Bulan (April=4 s.d. Agustus=8)                       | 4, 5, 6                  |
+| day                     | Integer     | Tanggal hari                                         | 1 - 31                   |
+| order                   | Integer     | Urutan klik dalam satu sesi                          | 1, 2, 3...               |
+| country                 | Categorical | Kode negara asal IP (Integer)                        | 29 (Poland), 9 (Czech)   |
+| session ID              | Integer     | ID unik sesi pengguna                                | 1, 2, ...                |
+| page 1 (main category)  | Categorical | TARGET: Kategori utama produk                        | 1 (trousers), 2 (skirts) |
+| page 2 (clothing model) | Categorical | Kode spesifik model produk                           | A1, B2...                |
+| colour                  | Categorical | Warna produk (kode integer)                          | 1, 2, 3...               |
+| location                | Categorical | Lokasi foto pada halaman (1-6)                       | 1 (top-left)...          |
+| model photography       | Categorical | Tipe foto (1: en face, 2: profile)                   | 1, 2                     |
+| price                   | Float       | Harga produk dalam USD                               | 38, 45                   |
+| price2                  | Categorical | Apakah harga > rata-rata kategori? (1: ya, 2: tidak) | 1, 2                     |
+| page                    | Integer     | Nomor halaman dalam situs                            | 1, 2...                  |
 
 ### 4.3 Kondisi Data
 
@@ -220,6 +226,7 @@ y_pred_baseline = model_baseline.predict(X_test_scaled)
 #### 6.1.4 Hasil Awal
 
 **[Tuliskan hasil evaluasi awal, akan dijelaskan detail di Section 7]**
+66.21%
 
 ---
 
@@ -277,6 +284,7 @@ y_pred_advanced = model_advanced.predict(X_test_scaled)
 #### 6.2.4 Hasil Model
 
 **[Tuliskan hasil evaluasi, akan dijelaskan detail di Section 7]**
+98.75%
 
 ---
 
@@ -319,23 +327,17 @@ MLP adalah arsitektur yang paling cocok untuk data input tabular yang terstruktu
 - StandardScaler: Normalisasi input menjadi N(0, 1) untuk membantu gradient descent.
 - One-Hot Encoding (Target): Variabel target (page 1) diubah menjadi vektor one-hot encoded (4 kelas: [1, 0, 0, 0], [0, 1, 0, 0], dll.) untuk kompatibilitas dengan fungsi loss categorical_crossentropy pada lapisan output softmax.
 
-- **Preprocessing khusus untuk DL:**
-
-- [Sebutkan preprocessing khusus seperti normalisasi, augmentasi, dll.]
-
-#### 6.3.4 Hyperparameter
-
 **Training Configuration:**
 
 ```
-- Optimizer: Adam / SGD / RMSprop
-- Learning rate: [nilai]
-- Loss function: [categorical_crossentropy / mse / binary_crossentropy / etc.]
-- Metrics: [accuracy / mae / etc.]
-- Batch size: [nilai]
-- Epochs: [nilai]
-- Validation split: [nilai] atau menggunakan validation set terpisah
-- Callbacks: [EarlyStopping, ModelCheckpoint, ReduceLROnPlateau, etc.]
+- Optimizer: Adam (Standar yang efektif untuk Deep Learning)
+- Learning rate: 0.001
+- Loss function: Categorical Crossentropy (Standar untuk klasifikasi multi-kelas one-hot)
+- Metrics: ['accuracy']
+- Batch size: 32
+- Epochs: 50
+- Validation split: 0.2 (20% dari Training Set digunakan untuk validasi selama pelatihan)
+- Callbacks: EarlyStopping (monitor='val_loss', patience=10)
 ```
 
 #### 6.3.5 Implementasi (Ringkas)
@@ -380,15 +382,15 @@ CPU / GPU, platform: Google Colab
 
 **Training History Visualization:**
 
-[Insert plot loss dan accuracy/metric per epoch]
-
-**Contoh visualisasi yang WAJIB:**
-
 1. **Training & Validation Loss** per epoch
-   ![Loss](images\DeepLearningLoss.png)
+
+![Loss](images\DeepLearningLoss.png)
+
 2. **Training & Validation Accuracy/Metric** per epoch
-   ![Acc](images\DeepLearningAccuracy.png)
-   **Analisis Training:**
+
+![Acc](images\DeepLearningAccuracy.png)
+
+**Analisis Training:**
 
 - Apakah model mengalami overfitting? [Ya, Garis Train Loss terus menurun seiring berjalannya epoch (dari 0.7 ke 0.12), namun garis Val Loss berhenti menurun secara signifikan di sekitar Epoch 10 dan tetap berada di bawah Train Loss (mencapai 0.05 di akhir). Dalam kasus Loss, normalnya Val Loss harus mengikuti Train Loss. Ketika Val Loss stagnan atau naik, sementara Train Loss terus turun, ini adalah tanda overfitting.]
 - Apakah model sudah converge? [Ya, Konvergensi terlihat jelas pada kedua grafik sekitar Epoch 10 hingga 12. Pada titik ini, garis Val Loss hampir datar dan garis Val Acc (Akurasi Validasi) juga sudah mencapai nilai tertinggi dan stagnan pada $\approx 0.99$.]
