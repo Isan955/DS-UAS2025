@@ -6,7 +6,7 @@
 
 - **Nama:** Muhammad Hasanuddin
 - **Repo:** https://github.com/Isan955/DS-UAS2025
-- **Video:** [...]
+- **Video:** https://youtu.be/DJplSjZes1k
 
 ---
 
@@ -46,6 +46,14 @@ project/
 │   └── 234311045_Muhammad Hasanuddin_UAS_DS.ipynb
 │
 ├── src/
+│   ├── comparison.py
+│   ├── directory.py
+│   ├── eda.py
+│   ├── evaluasi&visualisasi.py
+│   ├── library.py
+│   ├── loaddata&cleaning.py
+│   ├── model.py
+│   └── preprocessing.py
 │
 ├── models/
 │   ├── model_logistic_regression.pkl
@@ -140,12 +148,26 @@ project/
 
 # 8. 🔮 Future Work
 
-- [ ] Tuning model Random Forest (RF) untuk mencoba menyamai/melampaui performa MLP, karena RF lebih mudah di-_deploy_ dalam skenario _real-time_.
-- [ ] Analisis _Feature Importance_ dari Random Forest untuk mendapatkan wawasan bisnis yang lebih jelas.
-- [ ] Deployment model terbaik ke sistem rekomendasi e-commerce.
+- [x] Tuning model Random Forest (RF) untuk mencoba menyamai/melampaui performa MLP, karena RF lebih mudah di-_deploy_ dalam skenario _real-time_.
+- [x] Analisis _Feature Importance_ dari Random Forest untuk mendapatkan wawasan bisnis yang lebih jelas.
+- [x] Deployment model terbaik ke sistem rekomendasi e-commerce.
 
 ---
 
 # 9. 🔁 Reproducibility
 
-Gunakan environment:
+Gunakan environment: **Python 3.10+**
+
+- `pandas'
+- `numpy'
+- `matplotlib'
+- `joblib'
+- `seaborn'
+- `tensorflow'
+- `scikitlearn'
+
+Instalasi :
+
+```bash
+pip install -r requirements.txt
+```

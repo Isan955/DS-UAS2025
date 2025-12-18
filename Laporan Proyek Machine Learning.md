@@ -10,7 +10,7 @@ Klasifikasi Kategori Produk E-Commerce Berbasis Analisis Clickstream Menggunakan
 **Dosen Pengampu:** Gus Nanang Syaifuddin S.kom.,M.Kom
 **Tahun Akademik:** 2025/5
 **Link GitHub Repository:** https://github.com/Isan955/DS-UAS2025.git
-**Link Video Pembahasan:** [URL Repository]
+**Link Video Pembahasan:** https://youtu.be/DJplSjZes1k
 
 ---
 
@@ -35,8 +35,6 @@ Pada proyek ini, mahasiswa diharapkan dapat:
 ## 2. PROJECT OVERVIEW
 
 ### 2.1 Latar Belakang
-
-**Isi bagian ini dengan:**
 
 Sektor e-commerce modern sangat bergantung pada pemahaman perilaku pengguna secara real-time untuk mengoptimalkan pengalaman belanja dan meningkatkan konversi. Salah satu sumber data yang paling kaya dan dinamis adalah data clickstream, yaitu urutan aktivitas yang dilakukan pengguna selama sesi penjelajahan. Kemampuan untuk mengidentifikasi kategori produk utama (Trousers, Skirts, Blouses, dll.) yang dilihat pengguna secara instan hanya berdasarkan urutan klik (order), harga (price), dan atribut lainnya merupakan tantangan fundamental dalam sistem rekomendasi dan penargetan iklan.
 
@@ -129,7 +127,7 @@ Jelaskan kondisi dan permasalahan data:
 - **Outliers:** Ada, Terdeteksi pada fitur price (dilihat dari boxplot EDA) namun ditangani secara implisit melalui StandardScaler dan model ensemble (RF).
 - **Imbalanced Data:** Ada, namun relatif seimbang (Rasio Kelas Utama: 1.30 kali).
 
-### 4.4 Exploratory Data Analysis (EDA) - (**OPSIONAL**)
+### 4.4 Exploratory Data Analysis (EDA)
 
 #### Visualisasi 1: Distribusi Kategori Produk
 
@@ -225,7 +223,6 @@ y_pred_baseline = model_baseline.predict(X_test_scaled)
 
 #### 6.1.4 Hasil Awal
 
-**[Tuliskan hasil evaluasi awal, akan dijelaskan detail di Section 7]**
 66.21%
 
 ---
@@ -283,7 +280,6 @@ y_pred_advanced = model_advanced.predict(X_test_scaled)
 
 #### 6.2.4 Hasil Model
 
-**[Tuliskan hasil evaluasi, akan dijelaskan detail di Section 7]**
 98.75%
 
 ---
@@ -390,8 +386,8 @@ CPU / GPU, platform: Google Colab
 
 **Analisis Training:**
 
-- Apakah model mengalami overfitting? [Ya, Garis Train Loss terus menurun seiring berjalannya epoch (dari 0.7 ke 0.12), namun garis Val Loss berhenti menurun secara signifikan di sekitar Epoch 10 dan tetap berada di bawah Train Loss (mencapai 0.05 di akhir). Dalam kasus Loss, normalnya Val Loss harus mengikuti Train Loss. Ketika Val Loss stagnan atau naik, sementara Train Loss terus turun, ini adalah tanda overfitting.]
-- Apakah model sudah converge? [Ya, Konvergensi terlihat jelas pada kedua grafik sekitar Epoch 10 hingga 12. Pada titik ini, garis Val Loss hampir datar dan garis Val Acc (Akurasi Validasi) juga sudah mencapai nilai tertinggi dan stagnan pada $\approx 0.99$.]
+- Apakah model mengalami overfitting? Ya, Garis Train Loss terus menurun seiring berjalannya epoch (dari 0.7 ke 0.12), namun garis Val Loss berhenti menurun secara signifikan di sekitar Epoch 10 dan tetap berada di bawah Train Loss (mencapai 0.05 di akhir). Dalam kasus Loss, normalnya Val Loss harus mengikuti Train Loss. Ketika Val Loss stagnan atau naik, sementara Train Loss terus turun, ini adalah tanda overfitting.
+- Apakah model sudah converge? Ya, Konvergensi terlihat jelas pada kedua grafik sekitar Epoch 10 hingga 12. Pada titik ini, garis Val Loss hampir datar dan garis Val Acc (Akurasi Validasi) juga sudah mencapai nilai tertinggi dan stagnan pada $\approx 0.99$.
 - Apakah perlu lebih banyak epoch? [Tidak, Karena Val Loss telah stagnan dan Val Accuracy telah mencapai puncaknya, melanjutkan pelatihan lebih dari 15 epoch hanya akan meningkatkan risiko overfitting yang lebih parah tanpa memberikan peningkatan kinerja yang berarti pada data yang belum terlihat. Jika Anda menggunakan Callback EarlyStopping, model kemungkinan besar sudah dihentikan di sekitar Epoch 10 hingga 12.]
 
 #### 6.3.7 Model Summary
